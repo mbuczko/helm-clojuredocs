@@ -1,4 +1,4 @@
-;;; helm-clojuredocs.el --- helm search clojuredocs. -*- lexical-binding: t -*-
+;;; helm-clojuredocs.el --- helm search in clojuredocs.org -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2016 Michal Buczko <michal.buczko@gmail.com>
 
@@ -32,10 +32,10 @@
   :group 'helm-clojuredocs)
 
 (defface face-package
-  '((default (:foreground "green"))) "package")
+  '((default (:foreground "green"))) "Face used to describe package")
 
 (defface face-type
-  '((default (:foreground "grey50"))) "type")
+  '((default (:foreground "grey50"))) "Face used to describe type")
 
 (defun helm-net--url-retrieve-sync (request parser)
   (with-current-buffer (url-retrieve-synchronously request)
@@ -100,4 +100,4 @@
 ;; indent-tabs-mode: nil
 ;; End:
 
-;;; helm-net.el ends here
+;;; helm-clojuredocs.el ends here
