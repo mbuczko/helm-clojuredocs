@@ -87,6 +87,7 @@
     :volatile t
     :requires-pattern 3))
 
+;;;###autoload
 (defun helm-clojuredocs ()
   "Preconfigured `helm' for searching in clojuredocs.org"
   (interactive)
