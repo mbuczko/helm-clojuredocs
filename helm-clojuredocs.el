@@ -1,4 +1,10 @@
-;;; helm-clojuredocs.el --- helm search in clojuredocs.org -*- lexical-binding: t -*-
+;;; helm-clojuredocs.el --- search for help in clojuredocs.org
+
+;; Author: Michal Buczko <michal.buczko@gmail.com>
+;; URL: https://github.com/mbuczko/helm-clojuredocs
+;; Package-Requires: ((edn "1.1.2") (helm "1.5.7"))
+;; Version: 0.1
+;; Keywords: helm, clojure
 
 ;; Copyright (C) 2016 Michal Buczko <michal.buczko@gmail.com>
 
@@ -18,6 +24,7 @@
 ;;; Code:
 
 (require 'url)
+(require 'edn)
 (require 'browse-url)
 (require 'helm)
 
@@ -59,7 +66,6 @@
 
 (defun helm-clojuredocs-fetch (input)
   "Fetch Clojuredocs suggestions and return them as a list."
-  (require 'edn)
   (let ((request (concat helm-clojuredocs-suggest-url
                          (url-hexify-string input))))
     (helm-net--url-retrieve-sync
@@ -98,7 +104,6 @@
 
 ;; Local Variables:
 ;; coding: utf-8
-;; indent-tabs-mode: nil
 ;; End:
 
 ;;; helm-clojuredocs.el ends here
