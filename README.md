@@ -2,4 +2,4 @@
 
 For people addicted both to Emacs and [clojuredocs](http://clojuredocs.org)
 
-![animation](docs/helm-clojuredocs.gif "animation")
+![animation](doc/helm-clojuredocs.gif "animation")
