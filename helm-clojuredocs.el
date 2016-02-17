@@ -76,13 +76,13 @@
         suggestions
       (append
        suggestions
-       (list (cons (format "Search for '%s' on ClojureDocs.org" helm-input)
+       (list (cons (format "Search for '%s' on clojuredocs.org" helm-input)
                    (concat "/search?q=" helm-input)))))))
 
 (defvar helm-source-clojuredocs
-  (helm-build-sync-source "Clojuredocs Suggest"
+  (helm-build-sync-source "clojuredocs.org suggest"
     :candidates #'helm-clojuredocs-set-candidates
-    :action '(("Go to ClojureDocs.org" . (lambda (candidate)
+    :action '(("Go to clojuredocs.org" . (lambda (candidate)
                                            (browse-url (concat "http://clojuredocs.org" candidate)))))
     :volatile t
     :requires-pattern 3))
