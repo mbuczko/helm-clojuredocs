@@ -7,4 +7,4 @@ For people addicted both to Emacs and [clojuredocs](http://clojuredocs.org)
 
 ## How to install
 
-Relax. Soon in [Melpa](http://melpa.org/)
+Relax. Soon in [Melpa](http://melpa.org/).

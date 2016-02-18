@@ -38,10 +38,10 @@
   :type 'string
   :group 'helm-clojuredocs)
 
-(defface face-package
+(defface helm-clojuredocs-package
   '((default (:foreground "green"))) "Face used to describe package")
 
-(defface face-type
+(defface helm-clojuredocs-type
   '((default (:foreground "grey50"))) "Face used to describe type")
 
 (defun helm-net--url-retrieve-sync (request parser)
@@ -51,10 +51,10 @@
 (defun helm-clojuredocs--parse-suggestion (suggestion)
   (cons
    (format "%s %s %s"
-           (propertize (gethash ':ns suggestion) 'face 'face-package)
+           (propertize (gethash ':ns suggestion) 'face 'helm-clojuredocs-package)
            (gethash ':name suggestion)
            (propertize (concat
-                        "<" (gethash ':type suggestion) ">") 'face 'face-type))
+                        "<" (gethash ':type suggestion) ">") 'face 'helm-clojuredocs-type))
    (gethash :href suggestion)))
 
 (defun helm-clojuredocs--parse-buffer ()
