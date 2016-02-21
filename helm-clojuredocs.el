@@ -76,8 +76,7 @@
 (defun helm-clojuredocs-set-candidates (&optional request-prefix)
   "Set candidates with result and number of clojuredocs results found."
   (let ((suggestions (or (gethash helm-pattern helm-clojuredocs-cache)
-                         (or (sleep-for 0.1)
-                             (helm-clojuredocs-fetch helm-pattern request-prefix)))))
+                         (helm-clojuredocs-fetch helm-pattern request-prefix))))
     (if (member helm-pattern suggestions)
         suggestions
       (append
@@ -93,16 +92,17 @@
     :action '(("Go to clojuredocs.org" . (lambda (candidate)
                                            (browse-url (concat "http://clojuredocs.org" candidate)))))
     :volatile t
+    :delayed t
     :requires-pattern 3))
 
 
 (defun helm-clojuredocs-invoke (&optional init-value)
-  (setq debug-on-error t)
-  (helm :sources 'helm-source-clojuredocs
-        :buffer "*helm-clojuredocs*"
-        :prompt "Doc for: "
-        :input init-value)
-  (setq debug-on-error nil))
+  (let ((helm-input-idle-delay 0.3)
+        (debug-on-error t))
+    (helm :sources 'helm-source-clojuredocs
+          :buffer "*helm-clojuredocs*"
+          :prompt "Doc for: "
+          :input init-value)))
 
 ;;;###autoload
 (defun helm-clojuredocs ()
