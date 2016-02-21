@@ -49,13 +49,15 @@
     (funcall parser)))
 
 (defun helm-clojuredocs--parse-suggestion (suggestion)
-  (cons
-   (format "%s %s %s"
-           (propertize (gethash ':ns suggestion) 'face 'helm-clojuredocs-package)
-           (gethash ':name suggestion)
-           (propertize (concat
-                        "<" (gethash ':type suggestion) ">") 'face 'helm-clojuredocs-type))
-   (gethash :href suggestion)))
+  (let ((cd-namespace (or (gethash ':ns suggestion) ""))
+        (cd-type (or (gethash ':type suggestion) ""))
+        (cd-suggestion (gethash ':name suggestion)))
+    (cons
+     (format "%s %s %s"
+             (propertize cd-namespace 'face 'helm-clojuredocs-package)
+             cd-suggestion
+             (propertize (concat "<" cd-type ">") 'face 'helm-clojuredocs-type))
+     (gethash :href suggestion))))
 
 (defun helm-clojuredocs--parse-buffer ()
   (goto-char (point-min))
@@ -88,7 +90,7 @@
 (defvar helm-source-clojuredocs
   (helm-build-sync-source "clojuredocs.org suggest"
     :candidates #'helm-clojuredocs-set-candidates
-    :init (lambda () (clrhash helm-clojuredocs-cache))
+    :cleanup (lambda () (clrhash helm-clojuredocs-cache))
     :action '(("Go to clojuredocs.org" . (lambda (candidate)
                                            (browse-url (concat "http://clojuredocs.org" candidate)))))
     :volatile t
@@ -97,7 +99,7 @@
 
 
 (defun helm-clojuredocs-invoke (&optional init-value)
-  (let ((helm-input-idle-delay 0.3)
+  (let ((helm-input-idle-delay 0.38)
         (debug-on-error t))
     (helm :sources 'helm-source-clojuredocs
           :buffer "*helm-clojuredocs*"
