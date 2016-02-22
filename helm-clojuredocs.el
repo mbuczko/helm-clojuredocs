@@ -106,6 +106,10 @@
           :prompt "Doc for: "
           :input init-value)))
 
+(defun helm-clojuredocs-thing-at-point (thing)
+  (when thing
+    (first (last (split-string thing "/")))))
+
 ;;;###autoload
 (defun helm-clojuredocs ()
   "Preconfigured `helm' for searching in clojuredocs.org"
@@ -116,7 +120,8 @@
 (defun helm-clojuredocs-at-point ()
   "Preconfigured `helm' for searching in clojuredocs.org with symbol at point"
   (interactive)
-  (helm-clojuredocs-invoke (thing-at-point 'symbol)))
+  (helm-clojuredocs-invoke (helm-clojuredocs-thing-at-point
+                            (thing-at-point 'symbol))))
 
 (provide 'helm-clojuredocs)
 
