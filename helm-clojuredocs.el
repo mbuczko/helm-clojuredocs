@@ -3,7 +3,7 @@
 ;; Author: Michal Buczko <michal.buczko@gmail.com>
 ;; URL: https://github.com/mbuczko/helm-clojuredocs
 ;; Package-Requires: ((edn "1.1.2") (helm "1.5.7"))
-;; Version: 0.2
+;; Version: 0.3
 ;; Keywords: helm, clojure
 
 ;; Copyright (C) 2016 Michal Buczko <michal.buczko@gmail.com>
@@ -94,7 +94,6 @@
     :action '(("Go to clojuredocs.org" . (lambda (candidate)
                                            (browse-url (concat "http://clojuredocs.org" candidate)))))
     :volatile t
-    :delayed t
     :requires-pattern 3))
 
 
